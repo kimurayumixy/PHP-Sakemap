@@ -7,6 +7,12 @@
     <title>酒検索</title>
 </head>
 <body>
+	<button onclick="redirectToMap()">Go to Map</button>
+	<script>
+	function redirectToMap() {
+		window.location.href = 'map.php';
+	}
+	</script>
     <?php
     $dbHost = 'localhost:8889';
     $dbUser = 'root';
