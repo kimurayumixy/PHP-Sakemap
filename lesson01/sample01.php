@@ -40,24 +40,37 @@
 
     // クエリを実行する
     $stmt = $pdo->query($sql);
+    ?>
 
-    // 結果をHTMLテーブルに書き出す
-    echo '<table>';
-    echo '<tr><th>日本酒ID</th><th>日本酒Code</th><th>名前</th><th>種類</th><th>価格</th><th>Created At</th><th>Updated At</th></tr>';
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo '<tr>';
-        echo '<td>' . $row['sake_id'] . '</td>';
-        echo '<td>' . $row['sake_code'] . '</td>';
-        echo '<td>' . $row['sake_name'] . '</td>';
-        echo '<td>' . $row['sake_type'] . '</td>';
-        echo '<td>' . $row['price'] . '</td>';
-        echo '<td>' . $row['created_at'] . '</td>';
-        echo '<td>' . $row['updated_at'] . '</td>';
-        echo '</tr>';
-    }
-    echo '</table>';
+    <table>
+        <tr>
+            <th>日本酒ID</th>
+            <th>日本酒Code</th>
+            <th>名前</th>
+            <th>種類</th>
+            <th>価格</th>
+            <th>詳細</th>
+        </tr>
+        <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+            <tr>
+                <td><?php echo $row['sake_id']; ?></td>
+                <td><?php echo $row['sake_code']; ?></td>
+                <td><?php echo $row['sake_name']; ?></td>
+                <td><?php echo $row['sake_type']; ?></td>
+                <td><?php echo $row['price']; ?></td>
+                <td>
+                    <a href="details.php?sake_id=<?php echo $row[
+                        'sake_id'
+                    ]; ?>">
+                        詳細
+                    </a>
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
 
-    // データベース接続を切断する
+    <?php // データベース接続を切断する
+// データベース接続を切断する
     $pdo = null;
     ?>
 
