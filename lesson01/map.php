@@ -31,6 +31,7 @@ print_r($makers);
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+<script src='config.js'></script>
 <style>
     body { margin: 0; padding: 0; }
     #map { position: absolute; top: 0; bottom: 0; width: 100%; }
@@ -44,7 +45,6 @@ print_r($makers);
     <div id="map"></div>
 
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1Ijoia2ltdXJheXVtaXh5IiwiYSI6ImNsYXA4OTIzNzA5b2EzcHFlajlpYzIzY3oifQ.jFcyQkaZQgEmBHEHkUXhig';
         const map = new mapboxgl.Map({
             container: 'map',
             // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
