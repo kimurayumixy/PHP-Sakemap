@@ -14,11 +14,6 @@
 	}
 	</script>
     <?php
-    $dbHost = 'localhost:8889';
-    $dbUser = 'root';
-    $password = 'root';
-    $dbName = 'products';
-
     // データベース接続情報
     $host = 'localhost:8889';
     $dbname = 'products';
