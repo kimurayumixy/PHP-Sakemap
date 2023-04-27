@@ -64,22 +64,28 @@ print_r($makers);
                 mapboxgl: mapboxgl
             })
         );
+        const geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        });
 
+        // Add the control to the map.
+        map.addControl(geocoder);
         // ジオコーダーで住所を検索し、マーカーを追加する
         <?php foreach ($makers as $maker) : ?>
         var address_<?php echo $maker['maker_id']; ?> = '<?php echo $maker["address"]; ?>';
-        geocoder.query(address_<?php echo $maker['maker_id']; ?>, function (err, data) {
-            if (err) {
-            console.error(err);
-            return;
-            }
+            geocoder.query(address_<?php echo $maker['maker_id']; ?>, function (err, data) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
 
-            var marker = new mapboxgl.Marker({
-            color: 'orange'
-            })
-            .setLngLat(data.features[0].center)
-            .addTo(map);
-        });
+                var marker = new mapboxgl.Marker({
+                    color: 'orange'
+                })
+                .setLngLat(data.features[0].center)
+                .addTo(map);
+            });
         <?php endforeach; ?>
     </script>
 </body>
