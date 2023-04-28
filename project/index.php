@@ -7,12 +7,12 @@
     <title>酒検索</title>
 </head>
 <body>
-	<button onclick="redirectToMap()">Go to Map</button>
-	<script>
-	function redirectToMap() {
-		window.location.href = 'map.php';
-	}
-	</script>
+    <button onclick="redirectToMap()">Go to Map</button>
+    <script>
+    function redirectToMap() {
+        window.location.href = 'map.php';
+    }
+    </script>
     <?php
     // データベース接続情報
     $host = 'localhost:8889';
@@ -31,7 +31,7 @@
         die('データベースに接続できません：' . $e->getMessage());
     }
 
-    $sql = 'SELECT * FROM brands';
+    $sql = 'SELECT brands.id, brands.name AS brand_name, breweries.name AS brewery_name FROM brands JOIN breweries ON brands.brewery_id = breweries.id';
 
     // クエリを実行する
     $stmt = $pdo->query($sql);
@@ -41,12 +41,14 @@
         <tr>
             <th>日本酒ID</th>
             <th>名前</th>
+            <th>酒造名</th>
             <th>詳細</th>
         </tr>
         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
             <tr>
                 <td><?php echo $row['id']; ?></td>
-                <td><?php echo $row['name']; ?></td>
+                <td><?php echo $row['brand_name']; ?></td>
+                <td><?php echo $row['brewery_name']; ?></td>
                 <td>
                     <a href="details.php?id=<?php echo $row[
                         'id'
