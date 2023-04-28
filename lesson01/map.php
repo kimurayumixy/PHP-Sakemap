@@ -20,7 +20,6 @@ try {
 $sql_maker = "SELECT * FROM makers";
 $stmt_maker = $pdo->query($sql_maker);
 $makers = $stmt_maker->fetchAll(PDO::FETCH_ASSOC);
-print_r($makers);
 ?>
 
 <!DOCTYPE html>
@@ -73,20 +72,20 @@ print_r($makers);
         map.addControl(geocoder);
         // ジオコーダーで住所を検索し、マーカーを追加する
         <?php foreach ($makers as $maker) : ?>
-        var address_<?php echo $maker['maker_id']; ?> = '<?php echo $maker["address"]; ?>';
-            geocoder.query(address_<?php echo $maker['maker_id']; ?>, function (err, data) {
+            var address = '<?php echo $maker["address"]; ?>';
+            geocoder.query(address, function (err, data) {
                 if (err) {
-                    console.error(err);
-                    return;
+                console.error(err);
+                return;
                 }
 
                 var marker = new mapboxgl.Marker({
-                    color: 'orange'
+                color: 'orange'
                 })
                 .setLngLat(data.features[0].center)
                 .addTo(map);
             });
-        <?php endforeach; ?>
+            <?php endforeach; ?>
     </script>
 </body>
 </html>
