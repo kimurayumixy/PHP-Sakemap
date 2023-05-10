@@ -7,12 +7,12 @@
     <title>酒検索</title>
 </head>
 <body>
-	<button onclick="redirectToMap()">Go to Map</button>
-	<script>
-	function redirectToMap() {
-		window.location.href = 'map.php';
-	}
-	</script>
+    <button onclick="redirectToMap()">Go to Map</button>
+    <script>
+    function redirectToMap() {
+        window.location.href = 'map.php';
+    }
+    </script>
     <?php
     // データベース接続情報
     $host = 'localhost:8889';
@@ -31,7 +31,7 @@
         die('データベースに接続できません：' . $e->getMessage());
     }
 
-    $sql = 'SELECT * FROM sakes';
+    $sql = 'SELECT brands.id, brands.name AS brand_name, breweries.name AS brewery_name, breweries.address AS address, areas.name AS area_name FROM brands JOIN breweries ON brands.brewery_id = breweries.id JOIN areas ON breweries.area_id = areas.id';
 
     // クエリを実行する
     $stmt = $pdo->query($sql);
@@ -41,17 +41,21 @@
         <tr>
             <th>日本酒ID</th>
             <th>名前</th>
-            <th>種類</th>
+            <th>酒造名</th>
+            <th>製造場所</th>
+            <th>住所</th>
             <th>詳細</th>
         </tr>
         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
             <tr>
-                <td><?php echo $row['sake_id']; ?></td>
-                <td><?php echo $row['sake_name']; ?></td>
-                <td><?php echo $row['sake_type']; ?></td>
+                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['brand_name']; ?></td>
+                <td><?php echo $row['brewery_name']; ?></td>
+                <td><?php echo $row['area_name']; ?></td>
+                <td><?php echo $row['address']; ?></td>
                 <td>
-                    <a href="details.php?sake_id=<?php echo $row[
-                        'sake_id'
+                    <a href="details.php?id=<?php echo $row[
+                        'id'
                     ]; ?>">
                         詳細
                     </a>
@@ -59,8 +63,7 @@
             </tr>
         <?php } ?>
     </table>
-
-    <?php // データベース接続を切断する
+    <?php
     $pdo = null;
     ?>
 
