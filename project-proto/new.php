@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
 
     // 登録が完了したら、index.phpにリダイレクトする
-    header('Location: sample01.php');
+    header('Location: index.php');
     exit;
 }
 
@@ -48,9 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $sql = 'SELECT * FROM makers';
 $stmt = $pdo->query($sql);
 $makers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-foreach($makers as $maker) {
-    echo $maker['maker_name'];
-}
 ?>
 
 <!DOCTYPE html>
@@ -91,6 +88,7 @@ foreach($makers as $maker) {
                     <option value="<?php echo $maker['maker_id']; ?>"><?php echo $maker['maker_name']; ?></option>
                 <?php endforeach; ?>
             </select>
+            <a href="new-brewery.php">新しい酒造を追加する</a>
         </div>
         <div>
             <label for="alcohol_content">アルコール度数：</label>
