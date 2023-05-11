@@ -7,12 +7,16 @@
     <title>酒検索</title>
 </head>
 <body>
-	<button onclick="redirectToMap()">Go to Map</button>
-	<script>
-	function redirectToMap() {
-		window.location.href = 'map.php';
-	}
-	</script>
+    <button onclick="redirectToMap()">Go to Map</button>
+    <button onclick="redirectToNew()">追加</button>
+    <script>
+        function redirectToMap() {
+            window.location.href = 'map.php';
+        }
+        function redirectToNew() {
+        window.location.href = 'new.php';
+        }
+    </script>
     <?php
     // データベース接続情報
     $host = 'localhost:8889';
@@ -31,11 +35,28 @@
         die('データベースに接続できません：' . $e->getMessage());
     }
 
-    $sql = 'SELECT * FROM sakes';
+    // 検索キーワードを取得する
+    $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-    // クエリを実行する
-    $stmt = $pdo->query($sql);
+    // SQLクエリを構築する
+    $sql = 'SELECT * FROM sakes';
+    $params = array();
+    if (!empty($search)) {
+        $sql = "SELECT * FROM sakes WHERE sake_name LIKE :search OR sake_type LIKE :search";
+        $params = array(':search' => "%{$search}%");
+    }
+
+    // プリペアドステートメントを作成する
+    $stmt = $pdo->prepare($sql);
+
+    // パラメータを設定してクエリを実行する
+    $stmt->execute($params);
     ?>
+
+    <form method="GET">
+        <input type="text" name="search" value="<?php echo $search; ?>" placeholder="検索ワードを入力">
+        <button type="submit">検索</button>
+    </form>
 
     <table>
         <tr>
@@ -50,9 +71,7 @@
                 <td><?php echo $row['sake_name']; ?></td>
                 <td><?php echo $row['sake_type']; ?></td>
                 <td>
-                    <a href="details.php?sake_id=<?php echo $row[
-                        'sake_id'
-                    ]; ?>">
+                    <a href="details.php?sake_id=<?php echo $row['sake_id']; ?>">
                         詳細
                     </a>
                 </td>
