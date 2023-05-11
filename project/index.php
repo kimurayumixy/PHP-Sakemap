@@ -31,12 +31,23 @@
         die('データベースに接続できません：' . $e->getMessage());
     }
 
-    $sql = 'SELECT brands.id, brands.name AS brand_name, breweries.name AS brewery_name, breweries.address AS address, areas.name AS area_name FROM brands JOIN breweries ON brands.brewery_id = breweries.id JOIN areas ON breweries.area_id = areas.id';
-
-    // クエリを実行する
-    $stmt = $pdo->query($sql);
+    // 検索フィールドに入力された値があれば、SQL文に条件を追加する
+    $search_word = $_GET['search_word'] ?? '';
+    if (!empty($search_word)) {
+        $sql = 'SELECT brands.id, brands.name AS brand_name, breweries.name AS brewery_name, breweries.address AS address, areas.name AS area_name FROM brands JOIN breweries ON brands.brewery_id = breweries.id JOIN areas ON breweries.area_id = areas.id WHERE brands.name LIKE :search_word';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':search_word', "%$search_word%");
+    } else {
+        $sql = 'SELECT brands.id, brands.name AS brand_name, breweries.name AS brewery_name, breweries.address AS address, areas.name AS area_name FROM brands JOIN breweries ON brands.brewery_id = breweries.id JOIN areas ON breweries.area_id = areas.id';
+        $stmt = $pdo->query($sql);
+    }
     ?>
 
+    <form method="GET">
+        <label for="search_word">検索:</label>
+        <input type="text" name="search_word" id="search_word" value="<?php echo htmlspecialchars($search_word, ENT_QUOTES, 'UTF-8'); ?>">
+        <button type="submit">検索</button>
+    </form>
     <table>
         <tr>
             <th>日本酒ID</th>
