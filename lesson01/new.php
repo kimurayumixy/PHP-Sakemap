@@ -48,6 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $sql = 'SELECT * FROM makers';
 $stmt = $pdo->query($sql);
 $makers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+foreach($makers as $maker) {
+    echo $maker['maker_name'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -82,8 +85,12 @@ $makers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <input type="number" name="price" min="0">
         </div>
         <div>
-            <label for="makers_id">酒造メーカーID：</label>
-            <input type="number" name="makers_id" min="1" required>
+            <label for="makers_id">酒造メーカー：</label>
+            <select name="makers_id" required>
+                <?php foreach ($makers as $maker): ?>
+                    <option value="<?php echo $maker['maker_id']; ?>"><?php echo $maker['maker_name']; ?></option>
+                <?php endforeach; ?>
+            </select>
         </div>
         <div>
             <label for="alcohol_content">アルコール度数：</label>
