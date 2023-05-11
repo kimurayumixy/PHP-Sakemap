@@ -8,9 +8,13 @@
 </head>
 <body>
     <button onclick="redirectToMap()">Go to Map</button>
+    <button onclick="redirectToNew()">追加</button>
     <script>
         function redirectToMap() {
             window.location.href = 'map.php';
+        }
+        function redirectToNew() {
+        window.location.href = 'new.php';
         }
     </script>
     <?php
