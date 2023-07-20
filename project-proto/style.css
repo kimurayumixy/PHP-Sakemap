@@ -30,3 +30,25 @@ th {
     justify-content: space-between;
     margin-bottom: 20px;
 }
+
+.container .display-grid {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.container label {
+    margin-bottom: 5px;
+}
+
+.form-container {
+    border: 1px solid #EFEFEF;
+    padding: 30px;
+    background-color: #F6F6F6;
+    border-radius: 5px;
+}
+
+.container input, .container select {
+    border: 1px solid #EFEFEF;
+    padding: 5px;
+}

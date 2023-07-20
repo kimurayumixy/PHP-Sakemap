@@ -67,48 +67,51 @@ $makers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新しい日本酒を追加する</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>新しい日本酒を追加する</h1>
-    <form method="POST">
-        <div>
-            <label for="sake_name">名前：</label>
-            <input type="text" name="sake_name" required>
-        </div>
-        <div>
-            <label for="sake_description">詳細：</label>
-            <input type="text" name="sake_description">
-        </div>
-        <div>
-            <label for="flavor_type">フレーバータイプ：</label>
-            <input type="text" name="flavor_type">
-        </div>
-        <div>
-            <label for="sake_type">日本酒タイプ：</label>
-            <input type="text" name="sake_type">
-        </div>
-        <div>
-            <label for="price">価格：</label>
-            <input type="number" name="price" min="0">
-        </div>
-        <div>
-            <label for="makers_id">酒造メーカー：</label>
-            <select name="makers_id" required>
-                <?php foreach ($makers as $maker): ?>
-                    <option value="<?php echo $maker['maker_id']; ?>"><?php echo $maker['maker_name']; ?></option>
-                <?php endforeach; ?>
-            </select>
-            <a href="new-brewery.php">新しい酒造を追加する</a>
-        </div>
-        <div>
-            <label for="alcohol_content">アルコール度数：</label>
-            <input type="number" name="alcohol_content" min="0">
-        </div>
-        <div>
-            <label for="sake_image">写真：</label>
-            <input type="file" name="sake_image">
-        </div>
-        <button type="submit">追加</button>
-    </form>
+    <div class="container">
+        <h1>新しい日本酒を追加する</h1>
+        <form class="form-container" method="POST">
+            <div class="display-grid">
+                <label for="sake_name">名前</label>
+                <input type="text" name="sake_name" required>
+            </div>
+            <div class="display-grid">
+                <label for="sake_description">詳細</label>
+                <input type="text" name="sake_description">
+            </div>
+            <div class="display-grid">
+                <label for="flavor_type">フレーバータイプ</label>
+                <input type="text" name="flavor_type">
+            </div>
+            <div class="display-grid">
+                <label for="sake_type">日本酒タイプ</label>
+                <input type="text" name="sake_type">
+            </div>
+            <div class="display-grid">
+                <label for="price">価格</label>
+                <input type="number" name="price" min="0">
+            </div>
+            <div class="display-grid">
+                <label for="makers_id">酒造メーカー</label>
+                <select name="makers_id" required>
+                    <?php foreach ($makers as $maker): ?>
+                        <option value="<?php echo $maker['maker_id']; ?>"><?php echo $maker['maker_name']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <a href="new-brewery.php">新しい酒造を追加する</a>
+            </div>
+            <div class="display-grid">
+                <label for="alcohol_content">アルコール度数</label>
+                <input type="number" name="alcohol_content" min="0">
+            </div>
+            <!-- <div>
+                <label for="sake_image">写真：</label>
+                <input type="file" name="sake_image">
+            </div> -->
+            <button class="button-container" type="submit">追加</button>
+        </form>
+    </div>
 </body>
 </html>
