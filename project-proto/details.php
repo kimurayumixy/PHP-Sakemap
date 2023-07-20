@@ -41,6 +41,9 @@
     // 日本酒名と酒造メーカー名を表示する
     echo '<h1>' . $sake['sake_name'] . ' (' . $maker['maker_name'] . ')' . '</h1>';
 
+    // 日本酒の画像を表示する
+    echo '<img src="' . $sake['sake_image'] . '" alt="' . $sake['sake_name'] . '">';
+
     // その他の情報を表示する
     echo '<ul>';
     echo '<li>種類：' . $sake['sake_type'] . '</li>';

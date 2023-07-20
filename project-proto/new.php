@@ -26,9 +26,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $price = $_POST['price'];
     $makers_id = $_POST['makers_id'];
     $alcohol_content = $_POST['alcohol_content'];
+    $sake_image = $_FILES['sake_image'];
 
+      // 画像をアップロード
+    $upload_dir = 'images/';  // 画像をアップロードするディレクトリを指定します。
+    $uploaded_file = $upload_dir . basename($sake_image['name']);
+    if (move_uploaded_file($sake_image['tmp_name'], $uploaded_file)) {
+        echo "画像がアップロードされました。";
+    } else {
+        echo "画像のアップロードに失敗しました。";
+    }
     // データベースに新しいデータを登録する
-    $sql = "INSERT INTO sakes (sake_name, sake_description, flavor_type, sake_type, price, makers_id, alcohol_content) VALUES (:sake_name, :sake_description, :flavor_type, :sake_type, :price, :makers_id, :alcohol_content)";
+    $sql = "INSERT INTO sakes (sake_name, sake_description, flavor_type, sake_type, price, makers_id, alcohol_content, sake_image) VALUES (:sake_name, :sake_description, :flavor_type, :sake_type, :price, :makers_id, :alcohol_content, :sake_image)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':sake_name', $sake_name, PDO::PARAM_STR);
     $stmt->bindParam(':sake_description', $sake_description, PDO::PARAM_STR);
@@ -37,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':price', $price, PDO::PARAM_INT);
     $stmt->bindParam(':makers_id', $makers_id, PDO::PARAM_INT);
     $stmt->bindParam(':alcohol_content', $alcohol_content, PDO::PARAM_STR);
+    $stmt->bindParam(':sake_image', $uploaded_file, PDO::PARAM_STR);
     $stmt->execute();
 
     // 登録が完了したら、index.phpにリダイレクトする
@@ -93,6 +103,10 @@ $makers = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div>
             <label for="alcohol_content">アルコール度数：</label>
             <input type="number" name="alcohol_content" min="0">
+        </div>
+        <div>
+            <label for="sake_image">写真：</label>
+            <input type="file" name="sake_image">
         </div>
         <button type="submit">追加</button>
     </form>
