@@ -50,24 +50,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/dacbc5c95b.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
-    <h1>新しい日本酒を追加する</h1>
-    <form method="post">
-        <label for="maker_name">メーカー名:</label>
-        <input type="text" id="maker_name" name="maker_name"><br>
-
-        <label for="address">住所:</label>
-        <input type="text" id="address" name="address"><br>
-
-        <label for="detail">詳細:</label>
-        <textarea id="detail" name="detail"></textarea><br>
-
-        <label for="url">URL:</label>
-        <input type="text" id="url" name="url"><br>
-
-        <input type="submit" value="送信">
-    </form>
+    <div class="container">
+        <h1>新しい酒蔵を追加する</h1>
+        <form class="form-container" method="post">
+            <div class="display-grid">
+                <label for="maker_name">メーカー名:</label>
+                <input type="text" id="maker_name" name="maker_name"><br>
+            </div>
+            <div class="display-grid">
+                <label for="address">住所:</label>
+                <input type="text" id="address" name="address"><br>
+            </div>
+            <div class="display-grid">
+                <label for="detail">詳細:</label>
+                <textarea id="detail" name="detail"></textarea><br>
+            </div>
+            <div class="display-grid">
+                <label for="url">URL:</label>
+                <input type="text" id="url" name="url"><br>
+            </div>
+            <button class="button-container" type="submit">追加</button>
+        </form>
+    </div>
 </body>
 </html>

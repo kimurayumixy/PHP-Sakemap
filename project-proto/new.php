@@ -68,9 +68,7 @@ $makers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新しい日本酒を追加する</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400&display=swap" rel="stylesheet">
-
+    <script src="https://kit.fontawesome.com/dacbc5c95b.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -103,7 +101,7 @@ $makers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <option value="<?php echo $maker['maker_id']; ?>"><?php echo $maker['maker_name']; ?></option>
                     <?php endforeach; ?>
                 </select>
-                <a href="new-brewery.php">新しい酒造を追加する</a>
+                <a href="new-brewery.php"><i style="padding: 6px;" class="fa-solid fa-plus"></i></a>
             </div>
             <div class="display-grid">
                 <label for="alcohol_content">アルコール度数</label>
