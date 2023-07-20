@@ -69,18 +69,16 @@
                 <th>日本酒ID</th>
                 <th>名前</th>
                 <th>種類</th>
-                <th>詳細</th>
             </tr>
             <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
                 <tr>
                     <td class="center-text"><?php echo $row['sake_id']; ?></td>
-                    <td><?php echo $row['sake_name']; ?></td>
-                    <td><?php echo $row['sake_type']; ?></td>
                     <td class="center-text">
                         <a href="details.php?sake_id=<?php echo $row['sake_id']; ?>">
-                            詳細
+                            <?php echo $row['sake_name']; ?>
                         </a>
                     </td>
+                    <td class="center-text"><?php echo $row['sake_type']; ?></td>
                 </tr>
             <?php } ?>
         </table>

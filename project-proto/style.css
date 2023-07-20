@@ -25,17 +25,26 @@ body {
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
+    border-collapse: collapse;  /* セルの間の余白をなくす */
 }
 
-th, td {
-    border: 1px solid black;
-    padding: 8px;
+table th, table td {
+    border-left: none;  /* 左側の線を消す */
+    border-right: none;  /* 右側の線を消す */
+    border-top: 1px solid black;  /* 上側の線を設定 */
+    border-bottom: 1px solid black;  /* 下側の線を設定 */
 }
 
-th {
-    background-color: #f2f2f2;
+table tr:first-child th,
+table tr:first-child td,
+table tr:last-child th,
+table tr:last-child td {
+    border-top: none;  /* 一番上の行の上側の線を消す */
+    border-bottom: none;  /* 一番下の行の下側の線を消す */
+}
+
+table td, table th {
+    padding: 10px 0;  /* 上下に10pxのパディングを追加 */
 }
 
 .center-text {
@@ -43,7 +52,7 @@ th {
 }
 
 .container {
-    margin: 0 100px 0 100px;
+    margin: 31px 100px 31px 100px;
     display: flex;
     flex-direction: column;
 }
