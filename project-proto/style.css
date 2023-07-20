@@ -3,6 +3,10 @@ body {
     color: #636372;
 }
 
+h1 {
+    font-weight: 500;
+}
+
 .button-blue {
     background-color: #2F5C91;
     border-radius: 5px;
