@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>酒検索</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/dacbc5c95b.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -48,9 +52,9 @@
 
             <form class="search" method="GET">
                 <input type="text" name="search" value="<?php echo $search; ?>" placeholder="検索ワードを入力">
-                <button type="submit">検索</button>
+                <button class="search-icon" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
-            <button class="space-between" onclick="redirectToMap()">Go to Map</button>
+            <button class="space-between button-blue" onclick="redirectToMap()">Go to Map</button>
             <script>
                 function redirectToMap() {
                     window.location.href = 'map.php';
@@ -81,7 +85,7 @@
             <?php } ?>
         </table>
         <div class="button-container">
-            <button onclick="redirectToNew()">日本酒を追加する</button>
+            <button class="button-blue" onclick="redirectToNew()">日本酒を追加する</button>
         </div>
             <?php // データベース接続を切断する
             $pdo = null;

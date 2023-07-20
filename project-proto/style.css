@@ -1,3 +1,29 @@
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #636372;
+}
+
+.button-blue {
+    background-color: #2F5C91;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    color: #EFEFEF;
+    border: none;
+    font-size: 13px;
+    padding-inline: 9px;
+    padding-block: 2px;
+}
+
+.button-blue:hover {
+    background-color: rgb(81, 125, 173); /* ホバー時の背景色 */
+}
+
+.search-icon {
+    border: none;
+    background-color: #FFFFFF;
+    color: #636372;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -54,4 +80,14 @@ th {
 .container input, .container select {
     border: 1px solid #EFEFEF;
     padding: 5px;
+}
+
+dl {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px dotted #000;
+    padding-top: 23px;
+}
+dt, dd {
+    flex-basis: 34%;
 }
